@@ -48,32 +48,32 @@
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.18 0.04 250);
 
-  --primary: oklch(0.32 0.16 260);          /* deep brand navy-blue */
+  --primary: oklch(0.42 0.17 265);          /* lighter brand blue */
   --primary-foreground: oklch(0.99 0.005 240);
-  --primary-glow: oklch(0.62 0.18 245);     /* electric cyan-blue accent */
+  --primary-glow: oklch(0.70 0.16 250);     /* soft electric blue accent */
 
-  --secondary: oklch(0.96 0.02 245);
-  --secondary-foreground: oklch(0.25 0.08 260);
+  --secondary: oklch(0.97 0.018 245);
+  --secondary-foreground: oklch(0.30 0.08 260);
 
-  --muted: oklch(0.96 0.012 245);
-  --muted-foreground: oklch(0.48 0.04 255);
+  --muted: oklch(0.97 0.01 245);
+  --muted-foreground: oklch(0.52 0.035 255);
 
-  --accent: oklch(0.92 0.06 240);
-  --accent-foreground: oklch(0.25 0.12 260);
+  --accent: oklch(0.94 0.05 280);
+  --accent-foreground: oklch(0.32 0.14 270);
 
-  --destructive: oklch(0.6 0.22 27);
+  --destructive: oklch(0.62 0.22 25);       /* HDFC-inspired red accent */
   --destructive-foreground: oklch(0.99 0 0);
 
   --success: oklch(0.65 0.15 160);
   --success-foreground: oklch(0.99 0 0);
 
-  --border: oklch(0.92 0.015 245);
-  --input: oklch(0.94 0.015 245);
-  --ring: oklch(0.62 0.18 245);
+  --border: oklch(0.93 0.012 245);
+  --input: oklch(0.95 0.012 245);
+  --ring: oklch(0.70 0.16 250);
 
-  --gradient-primary: linear-gradient(135deg, oklch(0.32 0.18 285), oklch(0.55 0.20 255));
-  --gradient-hero: linear-gradient(135deg, oklch(0.20 0.12 290) 0%, oklch(0.30 0.16 270) 50%, oklch(0.45 0.20 250) 100%);
-  --gradient-glow: radial-gradient(circle at 30% 20%, oklch(0.60 0.22 290 / 0.4), transparent 60%);
+  --gradient-primary: linear-gradient(135deg, oklch(0.45 0.18 280), oklch(0.65 0.18 250));
+  --gradient-hero: linear-gradient(135deg, oklch(0.32 0.14 285) 0%, oklch(0.42 0.17 270) 50%, oklch(0.58 0.18 245) 100%);
+  --gradient-glow: radial-gradient(circle at 30% 20%, oklch(0.72 0.20 285 / 0.35), transparent 60%);
   --gradient-card: linear-gradient(180deg, oklch(1 0 0) 0%, oklch(0.97 0.012 245) 100%);
 
   --shadow-elegant: 0 20px 60px -20px oklch(0.32 0.16 260 / 0.35);
