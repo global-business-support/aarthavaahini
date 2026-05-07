@@ -6,7 +6,7 @@ import { CheckCircle2, Gauge } from "lucide-react";
 
 export function CibilChecker() {
   return (
-    <section className="container mx-auto px-6 py-24">
+    <section id="cibil" className="container mx-auto scroll-mt-24 px-6 py-24">
       <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_1fr]">
         <Card className="relative overflow-hidden border-border/60 bg-gradient-card p-10 shadow-elegant">
           <div className="absolute -left-20 -top-20 h-60 w-60 rounded-full bg-primary/15 blur-3xl" />

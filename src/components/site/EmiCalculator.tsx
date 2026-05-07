@@ -22,7 +22,7 @@ export function EmiCalculator() {
   }, [amount, rate, years]);
 
   return (
-    <section className="relative overflow-hidden bg-gradient-hero py-24 text-primary-foreground">
+    <section id="calculator" className="relative scroll-mt-24 overflow-hidden bg-gradient-hero py-24 text-primary-foreground">
       <div className="absolute inset-0 bg-gradient-glow opacity-70" />
       <div className="container relative mx-auto grid items-center gap-12 px-6 lg:grid-cols-2">
         <div>
