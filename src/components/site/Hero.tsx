@@ -6,18 +6,18 @@ export function Hero() {
   return (
     <section className="relative overflow-hidden bg-gradient-hero text-foreground">
       <div className="absolute inset-0 bg-gradient-glow" />
-      <div className="container relative mx-auto grid min-h-[calc(100vh-6rem)] items-center gap-8 px-6 py-14 lg:grid-cols-[0.92fr_1.08fr] lg:gap-8 lg:py-16">
+      <div className="container relative mx-auto grid min-h-[calc(100vh-6rem)] items-center gap-8 px-6 py-10 lg:grid-cols-[0.92fr_1.08fr] lg:gap-8 lg:py-16">
         <div className="flex flex-col justify-center">
           <span className="inline-flex w-fit items-center gap-2 rounded-full border border-border/70 bg-card/70 px-4 py-1.5 text-xs font-semibold text-primary shadow-soft backdrop-blur">
             <Sparkles className="h-3.5 w-3.5" /> India's Trusted Financial Partner
           </span>
-          <h1 className="mt-6 max-w-2xl font-display text-4xl font-bold leading-[1.05] text-foreground sm:text-5xl lg:text-6xl">
+          <h1 className="mt-5 max-w-2xl font-display text-4xl font-bold leading-[1.05] text-foreground sm:text-5xl lg:text-6xl">
             Banking, Loans & Insurance made simple.
           </h1>
-          <p className="mt-5 max-w-xl text-lg leading-8 text-muted-foreground">
+          <p className="mt-4 max-w-xl text-lg leading-8 text-muted-foreground">
             Aarthvaahini helps you compare loans, protect your family with insurance, and plan investments with a trusted financial advisor experience.
           </p>
-          <div className="mt-7 grid max-w-xl grid-cols-2 gap-3 sm:grid-cols-4">
+          <div className="mt-6 grid max-w-xl grid-cols-2 gap-3 sm:grid-cols-4">
             {[
               { icon: Landmark, label: "Banking" },
               { icon: Banknote, label: "Loans" },
@@ -30,7 +30,7 @@ export function Hero() {
               </div>
             ))}
           </div>
-          <div className="mt-8 flex flex-wrap gap-3">
+          <div className="mt-7 flex flex-wrap gap-3">
             <Button size="lg" className="bg-gradient-primary text-primary-foreground shadow-glow hover:opacity-95">
               Check My CIBIL — Free
             </Button>
@@ -39,15 +39,15 @@ export function Hero() {
             </Button>
           </div>
 
-          <div className="mt-10 flex flex-wrap gap-6 text-sm text-muted-foreground">
+          <div className="mt-8 flex flex-wrap gap-6 text-sm text-muted-foreground">
             <div className="flex items-center gap-2"><ShieldCheck className="h-4 w-4 text-primary-glow" /> RBI compliant partners</div>
             <div className="flex items-center gap-2"><TrendingUp className="h-4 w-4 text-primary-glow" /> 50,000+ happy customers</div>
           </div>
         </div>
 
-        <div className="relative flex min-h-[520px] items-end justify-center lg:min-h-[620px]">
+        <div className="relative flex min-h-[390px] items-end justify-center sm:min-h-[520px] lg:min-h-[620px]">
           <div className="absolute inset-0 rounded-[3rem] bg-gradient-glow blur-2xl" />
-          <div className="relative w-full max-w-[620px]">
+          <div className="relative w-full max-w-[430px] sm:max-w-[620px]">
             <img
               src={advisor}
               alt="Aarthvaahini financial advisor showing loans, insurance and mutual funds"
