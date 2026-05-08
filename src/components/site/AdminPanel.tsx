@@ -37,7 +37,7 @@ export function AdminPanel() {
                 <p className="text-xs uppercase tracking-wider text-primary-foreground/70">Aarthvaahini CRM</p>
                 <p className="font-display text-lg font-semibold">Dashboard Overview</p>
               </div>
-              <Badge className="bg-white/20 text-white hover:bg-white/20">Live</Badge>
+              <Badge className="bg-card/20 text-primary-foreground hover:bg-card/20">Live</Badge>
             </div>
 
             <div className="grid grid-cols-2 gap-3 p-6 sm:grid-cols-4">
@@ -97,8 +97,8 @@ export function AdminPanel() {
               </ul>
 
               <div className="mt-8 flex gap-3">
-                <div className="rounded-xl border border-white/15 bg-white/5 px-4 py-2 text-xs font-medium backdrop-blur">App Store</div>
-                <div className="rounded-xl border border-white/15 bg-white/5 px-4 py-2 text-xs font-medium backdrop-blur">Google Play</div>
+                <div className="rounded-xl border border-primary-foreground/15 bg-card/10 px-4 py-2 text-xs font-medium backdrop-blur">App Store</div>
+                <div className="rounded-xl border border-primary-foreground/15 bg-card/10 px-4 py-2 text-xs font-medium backdrop-blur">Google Play</div>
               </div>
             </div>
           </Card>
