@@ -7,6 +7,15 @@ export function Hero() {
     <section className="relative overflow-hidden bg-gradient-hero text-foreground">
       <div className="absolute inset-0 bg-gradient-glow" />
       <div className="container relative mx-auto grid min-h-[calc(100vh-6rem)] items-center gap-8 px-6 py-10 lg:grid-cols-[0.92fr_1.08fr] lg:gap-8 lg:py-16">
+        <img
+          src={advisor}
+          alt=""
+          aria-hidden
+          width={1024}
+          height={1024}
+          className="pointer-events-none absolute -right-24 bottom-4 z-0 h-[420px] w-[420px] object-cover opacity-35 sm:hidden"
+          style={{ maskImage: "radial-gradient(ellipse at center, #000 54%, transparent 100%)", WebkitMaskImage: "radial-gradient(ellipse at center, #000 54%, transparent 100%)" }}
+        />
         <div className="flex flex-col justify-center">
           <span className="inline-flex w-fit items-center gap-2 rounded-full border border-border/70 bg-card/70 px-4 py-1.5 text-xs font-semibold text-primary shadow-soft backdrop-blur">
             <Sparkles className="h-3.5 w-3.5" /> India's Trusted Financial Partner
@@ -45,7 +54,7 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="relative flex min-h-[390px] items-end justify-center sm:min-h-[520px] lg:min-h-[620px]">
+        <div className="relative hidden min-h-[390px] items-end justify-center sm:flex sm:min-h-[520px] lg:min-h-[620px]">
           <div className="absolute inset-0 rounded-[3rem] bg-gradient-glow blur-2xl" />
           <div className="relative w-full max-w-[430px] sm:max-w-[620px]">
             <img
