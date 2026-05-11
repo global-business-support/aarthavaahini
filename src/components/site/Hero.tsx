@@ -28,14 +28,14 @@ export function Hero() {
           </p>
           <div className="mt-6 grid max-w-xl grid-cols-2 gap-3 sm:grid-cols-4">
             {[
-              { icon: Landmark, label: "Banking" },
-              { icon: Banknote, label: "Loans" },
-              { icon: Umbrella, label: "Insurance" },
-              { icon: TrendingUp, label: "Mutual Funds" },
-            ].map(({ icon: Icon, label }) => (
-              <div key={label} className="rounded-2xl border border-border/70 bg-card/70 p-3 text-center shadow-soft backdrop-blur">
-                <Icon className="mx-auto h-5 w-5 text-primary" />
-                <p className="mt-2 text-xs font-semibold text-foreground">{label}</p>
+              { icon: Landmark, label: "Banking", bg: "bg-[#E3F2FD]", border: "border-[#90CAF9]/60", color: "text-[#1565C0]" },
+              { icon: Banknote, label: "Loans", bg: "bg-[#FFF4E5]", border: "border-[#FFCC80]/60", color: "text-[#E65100]" },
+              { icon: Umbrella, label: "Insurance", bg: "bg-[#FCE4EC]", border: "border-[#F48FB1]/60", color: "text-[#AD1457]" },
+              { icon: TrendingUp, label: "Mutual Funds", bg: "bg-[#E8F5E9]", border: "border-[#A5D6A7]/60", color: "text-[#2E7D32]" },
+            ].map(({ icon: Icon, label, bg, border, color }) => (
+              <div key={label} className={`rounded-2xl border ${border} ${bg} p-3 text-center shadow-soft backdrop-blur`}>
+                <Icon className={`mx-auto h-5 w-5 ${color}`} />
+                <p className={`mt-2 text-xs font-semibold ${color}`}>{label}</p>
               </div>
             ))}
           </div>

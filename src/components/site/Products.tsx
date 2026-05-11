@@ -3,10 +3,10 @@ import { Button } from "@/components/ui/button";
 import { Banknote, ShieldPlus, LineChart, ArrowRight, Landmark, FileCheck2, Percent } from "lucide-react";
 
 const bankingFeatures = [
-  { icon: Landmark, title: "40+ bank partners", desc: "Home, business and personal loan options in one place." },
-  { icon: Percent, title: "Low interest offers", desc: "Compare rates and eligibility before you apply." },
-  { icon: ShieldPlus, title: "Insurance protection", desc: "Health, life, term and motor plans for every family." },
-  { icon: FileCheck2, title: "Fast processing", desc: "Guided documentation with advisor support." },
+  { icon: Landmark, title: "40+ bank partners", desc: "Home, business and personal loan options in one place.", bg: "bg-[#E3F2FD]", color: "text-[#1565C0]" },
+  { icon: Percent, title: "Low interest offers", desc: "Compare rates and eligibility before you apply.", bg: "bg-[#FFF4E5]", color: "text-[#E65100]" },
+  { icon: ShieldPlus, title: "Insurance protection", desc: "Health, life, term and motor plans for every family.", bg: "bg-[#FCE4EC]", color: "text-[#AD1457]" },
+  { icon: FileCheck2, title: "Fast processing", desc: "Guided documentation with advisor support.", bg: "bg-[#E8F5E9]", color: "text-[#2E7D32]" },
 ];
 
 const products = [
@@ -34,11 +34,11 @@ export function Products() {
   return (
     <section id="products" className="container mx-auto scroll-mt-24 px-6 py-24">
       <div className="grid gap-4 rounded-[2rem] border border-border/70 bg-card/75 p-4 shadow-soft backdrop-blur md:grid-cols-4 md:p-5">
-        {bankingFeatures.map(({ icon: Icon, title, desc }) => (
-          <div key={title} className="rounded-2xl bg-secondary/55 p-5">
-            <Icon className="h-6 w-6 text-primary" />
-            <h3 className="mt-4 font-display text-lg font-bold text-foreground">{title}</h3>
-            <p className="mt-2 text-sm text-muted-foreground">{desc}</p>
+        {bankingFeatures.map(({ icon: Icon, title, desc, bg, color }) => (
+          <div key={title} className={`rounded-2xl ${bg} p-5`}>
+            <Icon className={`h-6 w-6 ${color}`} />
+            <h3 className={`mt-4 font-display text-lg font-bold ${color}`}>{title}</h3>
+            <p className="mt-2 text-sm text-foreground/70">{desc}</p>
           </div>
         ))}
       </div>
