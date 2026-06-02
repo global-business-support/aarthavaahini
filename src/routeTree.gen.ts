@@ -14,6 +14,7 @@ import { Route as LoginRouteImport } from './routes/login'
 import { Route as LoansRouteImport } from './routes/loans'
 import { Route as InsuranceRouteImport } from './routes/insurance'
 import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as CrmRouteImport } from './routes/crm'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CibilRouteImport } from './routes/cibil'
 import { Route as BlogsRouteImport } from './routes/blogs'
@@ -21,6 +22,15 @@ import { Route as BankingRouteImport } from './routes/banking'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CrmIndexRouteImport } from './routes/crm.index'
+import { Route as CrmTasksRouteImport } from './routes/crm.tasks'
+import { Route as CrmReportsRouteImport } from './routes/crm.reports'
+import { Route as CrmMutualFundsRouteImport } from './routes/crm.mutual-funds'
+import { Route as CrmLoginRouteImport } from './routes/crm.login'
+import { Route as CrmLoansRouteImport } from './routes/crm.loans'
+import { Route as CrmLeadsRouteImport } from './routes/crm.leads'
+import { Route as CrmInsuranceRouteImport } from './routes/crm.insurance'
+import { Route as CrmCustomersRouteImport } from './routes/crm.customers'
 import { Route as BlogsSipGuideRouteImport } from './routes/blogs/sip-guide'
 import { Route as BlogsHomeLoanGuideRouteImport } from './routes/blogs/home-loan-guide'
 import { Route as BlogsCibilScoreRouteImport } from './routes/blogs/cibil-score'
@@ -48,6 +58,11 @@ const InsuranceRoute = InsuranceRouteImport.update({
 const DashboardRoute = DashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CrmRoute = CrmRouteImport.update({
+  id: '/crm',
+  path: '/crm',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -85,6 +100,51 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CrmIndexRoute = CrmIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => CrmRoute,
+} as any)
+const CrmTasksRoute = CrmTasksRouteImport.update({
+  id: '/tasks',
+  path: '/tasks',
+  getParentRoute: () => CrmRoute,
+} as any)
+const CrmReportsRoute = CrmReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => CrmRoute,
+} as any)
+const CrmMutualFundsRoute = CrmMutualFundsRouteImport.update({
+  id: '/mutual-funds',
+  path: '/mutual-funds',
+  getParentRoute: () => CrmRoute,
+} as any)
+const CrmLoginRoute = CrmLoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => CrmRoute,
+} as any)
+const CrmLoansRoute = CrmLoansRouteImport.update({
+  id: '/loans',
+  path: '/loans',
+  getParentRoute: () => CrmRoute,
+} as any)
+const CrmLeadsRoute = CrmLeadsRouteImport.update({
+  id: '/leads',
+  path: '/leads',
+  getParentRoute: () => CrmRoute,
+} as any)
+const CrmInsuranceRoute = CrmInsuranceRouteImport.update({
+  id: '/insurance',
+  path: '/insurance',
+  getParentRoute: () => CrmRoute,
+} as any)
+const CrmCustomersRoute = CrmCustomersRouteImport.update({
+  id: '/customers',
+  path: '/customers',
+  getParentRoute: () => CrmRoute,
+} as any)
 const BlogsSipGuideRoute = BlogsSipGuideRouteImport.update({
   id: '/sip-guide',
   path: '/sip-guide',
@@ -109,6 +169,7 @@ export interface FileRoutesByFullPath {
   '/blogs': typeof BlogsRouteWithChildren
   '/cibil': typeof CibilRoute
   '/contact': typeof ContactRoute
+  '/crm': typeof CrmRouteWithChildren
   '/dashboard': typeof DashboardRoute
   '/insurance': typeof InsuranceRoute
   '/loans': typeof LoansRoute
@@ -117,6 +178,15 @@ export interface FileRoutesByFullPath {
   '/blogs/cibil-score': typeof BlogsCibilScoreRoute
   '/blogs/home-loan-guide': typeof BlogsHomeLoanGuideRoute
   '/blogs/sip-guide': typeof BlogsSipGuideRoute
+  '/crm/customers': typeof CrmCustomersRoute
+  '/crm/insurance': typeof CrmInsuranceRoute
+  '/crm/leads': typeof CrmLeadsRoute
+  '/crm/loans': typeof CrmLoansRoute
+  '/crm/login': typeof CrmLoginRoute
+  '/crm/mutual-funds': typeof CrmMutualFundsRoute
+  '/crm/reports': typeof CrmReportsRoute
+  '/crm/tasks': typeof CrmTasksRoute
+  '/crm/': typeof CrmIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -134,6 +204,15 @@ export interface FileRoutesByTo {
   '/blogs/cibil-score': typeof BlogsCibilScoreRoute
   '/blogs/home-loan-guide': typeof BlogsHomeLoanGuideRoute
   '/blogs/sip-guide': typeof BlogsSipGuideRoute
+  '/crm/customers': typeof CrmCustomersRoute
+  '/crm/insurance': typeof CrmInsuranceRoute
+  '/crm/leads': typeof CrmLeadsRoute
+  '/crm/loans': typeof CrmLoansRoute
+  '/crm/login': typeof CrmLoginRoute
+  '/crm/mutual-funds': typeof CrmMutualFundsRoute
+  '/crm/reports': typeof CrmReportsRoute
+  '/crm/tasks': typeof CrmTasksRoute
+  '/crm': typeof CrmIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -144,6 +223,7 @@ export interface FileRoutesById {
   '/blogs': typeof BlogsRouteWithChildren
   '/cibil': typeof CibilRoute
   '/contact': typeof ContactRoute
+  '/crm': typeof CrmRouteWithChildren
   '/dashboard': typeof DashboardRoute
   '/insurance': typeof InsuranceRoute
   '/loans': typeof LoansRoute
@@ -152,6 +232,15 @@ export interface FileRoutesById {
   '/blogs/cibil-score': typeof BlogsCibilScoreRoute
   '/blogs/home-loan-guide': typeof BlogsHomeLoanGuideRoute
   '/blogs/sip-guide': typeof BlogsSipGuideRoute
+  '/crm/customers': typeof CrmCustomersRoute
+  '/crm/insurance': typeof CrmInsuranceRoute
+  '/crm/leads': typeof CrmLeadsRoute
+  '/crm/loans': typeof CrmLoansRoute
+  '/crm/login': typeof CrmLoginRoute
+  '/crm/mutual-funds': typeof CrmMutualFundsRoute
+  '/crm/reports': typeof CrmReportsRoute
+  '/crm/tasks': typeof CrmTasksRoute
+  '/crm/': typeof CrmIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -163,6 +252,7 @@ export interface FileRouteTypes {
     | '/blogs'
     | '/cibil'
     | '/contact'
+    | '/crm'
     | '/dashboard'
     | '/insurance'
     | '/loans'
@@ -171,6 +261,15 @@ export interface FileRouteTypes {
     | '/blogs/cibil-score'
     | '/blogs/home-loan-guide'
     | '/blogs/sip-guide'
+    | '/crm/customers'
+    | '/crm/insurance'
+    | '/crm/leads'
+    | '/crm/loans'
+    | '/crm/login'
+    | '/crm/mutual-funds'
+    | '/crm/reports'
+    | '/crm/tasks'
+    | '/crm/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -188,6 +287,15 @@ export interface FileRouteTypes {
     | '/blogs/cibil-score'
     | '/blogs/home-loan-guide'
     | '/blogs/sip-guide'
+    | '/crm/customers'
+    | '/crm/insurance'
+    | '/crm/leads'
+    | '/crm/loans'
+    | '/crm/login'
+    | '/crm/mutual-funds'
+    | '/crm/reports'
+    | '/crm/tasks'
+    | '/crm'
   id:
     | '__root__'
     | '/'
@@ -197,6 +305,7 @@ export interface FileRouteTypes {
     | '/blogs'
     | '/cibil'
     | '/contact'
+    | '/crm'
     | '/dashboard'
     | '/insurance'
     | '/loans'
@@ -205,6 +314,15 @@ export interface FileRouteTypes {
     | '/blogs/cibil-score'
     | '/blogs/home-loan-guide'
     | '/blogs/sip-guide'
+    | '/crm/customers'
+    | '/crm/insurance'
+    | '/crm/leads'
+    | '/crm/loans'
+    | '/crm/login'
+    | '/crm/mutual-funds'
+    | '/crm/reports'
+    | '/crm/tasks'
+    | '/crm/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -215,6 +333,7 @@ export interface RootRouteChildren {
   BlogsRoute: typeof BlogsRouteWithChildren
   CibilRoute: typeof CibilRoute
   ContactRoute: typeof ContactRoute
+  CrmRoute: typeof CrmRouteWithChildren
   DashboardRoute: typeof DashboardRoute
   InsuranceRoute: typeof InsuranceRoute
   LoansRoute: typeof LoansRoute
@@ -257,6 +376,13 @@ declare module '@tanstack/react-router' {
       path: '/dashboard'
       fullPath: '/dashboard'
       preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/crm': {
+      id: '/crm'
+      path: '/crm'
+      fullPath: '/crm'
+      preLoaderRoute: typeof CrmRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -308,6 +434,69 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/crm/': {
+      id: '/crm/'
+      path: '/'
+      fullPath: '/crm/'
+      preLoaderRoute: typeof CrmIndexRouteImport
+      parentRoute: typeof CrmRoute
+    }
+    '/crm/tasks': {
+      id: '/crm/tasks'
+      path: '/tasks'
+      fullPath: '/crm/tasks'
+      preLoaderRoute: typeof CrmTasksRouteImport
+      parentRoute: typeof CrmRoute
+    }
+    '/crm/reports': {
+      id: '/crm/reports'
+      path: '/reports'
+      fullPath: '/crm/reports'
+      preLoaderRoute: typeof CrmReportsRouteImport
+      parentRoute: typeof CrmRoute
+    }
+    '/crm/mutual-funds': {
+      id: '/crm/mutual-funds'
+      path: '/mutual-funds'
+      fullPath: '/crm/mutual-funds'
+      preLoaderRoute: typeof CrmMutualFundsRouteImport
+      parentRoute: typeof CrmRoute
+    }
+    '/crm/login': {
+      id: '/crm/login'
+      path: '/login'
+      fullPath: '/crm/login'
+      preLoaderRoute: typeof CrmLoginRouteImport
+      parentRoute: typeof CrmRoute
+    }
+    '/crm/loans': {
+      id: '/crm/loans'
+      path: '/loans'
+      fullPath: '/crm/loans'
+      preLoaderRoute: typeof CrmLoansRouteImport
+      parentRoute: typeof CrmRoute
+    }
+    '/crm/leads': {
+      id: '/crm/leads'
+      path: '/leads'
+      fullPath: '/crm/leads'
+      preLoaderRoute: typeof CrmLeadsRouteImport
+      parentRoute: typeof CrmRoute
+    }
+    '/crm/insurance': {
+      id: '/crm/insurance'
+      path: '/insurance'
+      fullPath: '/crm/insurance'
+      preLoaderRoute: typeof CrmInsuranceRouteImport
+      parentRoute: typeof CrmRoute
+    }
+    '/crm/customers': {
+      id: '/crm/customers'
+      path: '/customers'
+      fullPath: '/crm/customers'
+      preLoaderRoute: typeof CrmCustomersRouteImport
+      parentRoute: typeof CrmRoute
+    }
     '/blogs/sip-guide': {
       id: '/blogs/sip-guide'
       path: '/sip-guide'
@@ -346,6 +535,32 @@ const BlogsRouteChildren: BlogsRouteChildren = {
 
 const BlogsRouteWithChildren = BlogsRoute._addFileChildren(BlogsRouteChildren)
 
+interface CrmRouteChildren {
+  CrmCustomersRoute: typeof CrmCustomersRoute
+  CrmInsuranceRoute: typeof CrmInsuranceRoute
+  CrmLeadsRoute: typeof CrmLeadsRoute
+  CrmLoansRoute: typeof CrmLoansRoute
+  CrmLoginRoute: typeof CrmLoginRoute
+  CrmMutualFundsRoute: typeof CrmMutualFundsRoute
+  CrmReportsRoute: typeof CrmReportsRoute
+  CrmTasksRoute: typeof CrmTasksRoute
+  CrmIndexRoute: typeof CrmIndexRoute
+}
+
+const CrmRouteChildren: CrmRouteChildren = {
+  CrmCustomersRoute: CrmCustomersRoute,
+  CrmInsuranceRoute: CrmInsuranceRoute,
+  CrmLeadsRoute: CrmLeadsRoute,
+  CrmLoansRoute: CrmLoansRoute,
+  CrmLoginRoute: CrmLoginRoute,
+  CrmMutualFundsRoute: CrmMutualFundsRoute,
+  CrmReportsRoute: CrmReportsRoute,
+  CrmTasksRoute: CrmTasksRoute,
+  CrmIndexRoute: CrmIndexRoute,
+}
+
+const CrmRouteWithChildren = CrmRoute._addFileChildren(CrmRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
@@ -354,6 +569,7 @@ const rootRouteChildren: RootRouteChildren = {
   BlogsRoute: BlogsRouteWithChildren,
   CibilRoute: CibilRoute,
   ContactRoute: ContactRoute,
+  CrmRoute: CrmRouteWithChildren,
   DashboardRoute: DashboardRoute,
   InsuranceRoute: InsuranceRoute,
   LoansRoute: LoansRoute,
@@ -363,13 +579,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
