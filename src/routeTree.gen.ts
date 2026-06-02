@@ -25,6 +25,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as CrmIndexRouteImport } from './routes/crm.index'
 import { Route as CrmLoginRouteImport } from './routes/crm.login'
 import { Route as CrmLeadsRouteImport } from './routes/crm.leads'
+import { Route as CrmCustomersRouteImport } from './routes/crm.customers'
 import { Route as BlogsSipGuideRouteImport } from './routes/blogs/sip-guide'
 import { Route as BlogsHomeLoanGuideRouteImport } from './routes/blogs/home-loan-guide'
 import { Route as BlogsCibilScoreRouteImport } from './routes/blogs/cibil-score'
@@ -109,6 +110,11 @@ const CrmLeadsRoute = CrmLeadsRouteImport.update({
   path: '/leads',
   getParentRoute: () => CrmRoute,
 } as any)
+const CrmCustomersRoute = CrmCustomersRouteImport.update({
+  id: '/customers',
+  path: '/customers',
+  getParentRoute: () => CrmRoute,
+} as any)
 const BlogsSipGuideRoute = BlogsSipGuideRouteImport.update({
   id: '/sip-guide',
   path: '/sip-guide',
@@ -142,6 +148,7 @@ export interface FileRoutesByFullPath {
   '/blogs/cibil-score': typeof BlogsCibilScoreRoute
   '/blogs/home-loan-guide': typeof BlogsHomeLoanGuideRoute
   '/blogs/sip-guide': typeof BlogsSipGuideRoute
+  '/crm/customers': typeof CrmCustomersRoute
   '/crm/leads': typeof CrmLeadsRoute
   '/crm/login': typeof CrmLoginRoute
   '/crm/': typeof CrmIndexRoute
@@ -162,6 +169,7 @@ export interface FileRoutesByTo {
   '/blogs/cibil-score': typeof BlogsCibilScoreRoute
   '/blogs/home-loan-guide': typeof BlogsHomeLoanGuideRoute
   '/blogs/sip-guide': typeof BlogsSipGuideRoute
+  '/crm/customers': typeof CrmCustomersRoute
   '/crm/leads': typeof CrmLeadsRoute
   '/crm/login': typeof CrmLoginRoute
   '/crm': typeof CrmIndexRoute
@@ -184,6 +192,7 @@ export interface FileRoutesById {
   '/blogs/cibil-score': typeof BlogsCibilScoreRoute
   '/blogs/home-loan-guide': typeof BlogsHomeLoanGuideRoute
   '/blogs/sip-guide': typeof BlogsSipGuideRoute
+  '/crm/customers': typeof CrmCustomersRoute
   '/crm/leads': typeof CrmLeadsRoute
   '/crm/login': typeof CrmLoginRoute
   '/crm/': typeof CrmIndexRoute
@@ -207,6 +216,7 @@ export interface FileRouteTypes {
     | '/blogs/cibil-score'
     | '/blogs/home-loan-guide'
     | '/blogs/sip-guide'
+    | '/crm/customers'
     | '/crm/leads'
     | '/crm/login'
     | '/crm/'
@@ -227,6 +237,7 @@ export interface FileRouteTypes {
     | '/blogs/cibil-score'
     | '/blogs/home-loan-guide'
     | '/blogs/sip-guide'
+    | '/crm/customers'
     | '/crm/leads'
     | '/crm/login'
     | '/crm'
@@ -248,6 +259,7 @@ export interface FileRouteTypes {
     | '/blogs/cibil-score'
     | '/blogs/home-loan-guide'
     | '/blogs/sip-guide'
+    | '/crm/customers'
     | '/crm/leads'
     | '/crm/login'
     | '/crm/'
@@ -383,6 +395,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CrmLeadsRouteImport
       parentRoute: typeof CrmRoute
     }
+    '/crm/customers': {
+      id: '/crm/customers'
+      path: '/customers'
+      fullPath: '/crm/customers'
+      preLoaderRoute: typeof CrmCustomersRouteImport
+      parentRoute: typeof CrmRoute
+    }
     '/blogs/sip-guide': {
       id: '/blogs/sip-guide'
       path: '/sip-guide'
@@ -422,12 +441,14 @@ const BlogsRouteChildren: BlogsRouteChildren = {
 const BlogsRouteWithChildren = BlogsRoute._addFileChildren(BlogsRouteChildren)
 
 interface CrmRouteChildren {
+  CrmCustomersRoute: typeof CrmCustomersRoute
   CrmLeadsRoute: typeof CrmLeadsRoute
   CrmLoginRoute: typeof CrmLoginRoute
   CrmIndexRoute: typeof CrmIndexRoute
 }
 
 const CrmRouteChildren: CrmRouteChildren = {
+  CrmCustomersRoute: CrmCustomersRoute,
   CrmLeadsRoute: CrmLeadsRoute,
   CrmLoginRoute: CrmLoginRoute,
   CrmIndexRoute: CrmIndexRoute,
@@ -453,3 +474,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
