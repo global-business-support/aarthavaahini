@@ -14,6 +14,7 @@ import { Route as LoginRouteImport } from './routes/login'
 import { Route as LoansRouteImport } from './routes/loans'
 import { Route as InsuranceRouteImport } from './routes/insurance'
 import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as CrmRouteImport } from './routes/crm'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CibilRouteImport } from './routes/cibil'
 import { Route as BlogsRouteImport } from './routes/blogs'
@@ -48,6 +49,11 @@ const InsuranceRoute = InsuranceRouteImport.update({
 const DashboardRoute = DashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CrmRoute = CrmRouteImport.update({
+  id: '/crm',
+  path: '/crm',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -109,6 +115,7 @@ export interface FileRoutesByFullPath {
   '/blogs': typeof BlogsRouteWithChildren
   '/cibil': typeof CibilRoute
   '/contact': typeof ContactRoute
+  '/crm': typeof CrmRoute
   '/dashboard': typeof DashboardRoute
   '/insurance': typeof InsuranceRoute
   '/loans': typeof LoansRoute
@@ -126,6 +133,7 @@ export interface FileRoutesByTo {
   '/blogs': typeof BlogsRouteWithChildren
   '/cibil': typeof CibilRoute
   '/contact': typeof ContactRoute
+  '/crm': typeof CrmRoute
   '/dashboard': typeof DashboardRoute
   '/insurance': typeof InsuranceRoute
   '/loans': typeof LoansRoute
@@ -144,6 +152,7 @@ export interface FileRoutesById {
   '/blogs': typeof BlogsRouteWithChildren
   '/cibil': typeof CibilRoute
   '/contact': typeof ContactRoute
+  '/crm': typeof CrmRoute
   '/dashboard': typeof DashboardRoute
   '/insurance': typeof InsuranceRoute
   '/loans': typeof LoansRoute
@@ -163,6 +172,7 @@ export interface FileRouteTypes {
     | '/blogs'
     | '/cibil'
     | '/contact'
+    | '/crm'
     | '/dashboard'
     | '/insurance'
     | '/loans'
@@ -180,6 +190,7 @@ export interface FileRouteTypes {
     | '/blogs'
     | '/cibil'
     | '/contact'
+    | '/crm'
     | '/dashboard'
     | '/insurance'
     | '/loans'
@@ -197,6 +208,7 @@ export interface FileRouteTypes {
     | '/blogs'
     | '/cibil'
     | '/contact'
+    | '/crm'
     | '/dashboard'
     | '/insurance'
     | '/loans'
@@ -215,6 +227,7 @@ export interface RootRouteChildren {
   BlogsRoute: typeof BlogsRouteWithChildren
   CibilRoute: typeof CibilRoute
   ContactRoute: typeof ContactRoute
+  CrmRoute: typeof CrmRoute
   DashboardRoute: typeof DashboardRoute
   InsuranceRoute: typeof InsuranceRoute
   LoansRoute: typeof LoansRoute
@@ -257,6 +270,13 @@ declare module '@tanstack/react-router' {
       path: '/dashboard'
       fullPath: '/dashboard'
       preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/crm': {
+      id: '/crm'
+      path: '/crm'
+      fullPath: '/crm'
+      preLoaderRoute: typeof CrmRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -354,6 +374,7 @@ const rootRouteChildren: RootRouteChildren = {
   BlogsRoute: BlogsRouteWithChildren,
   CibilRoute: CibilRoute,
   ContactRoute: ContactRoute,
+  CrmRoute: CrmRoute,
   DashboardRoute: DashboardRoute,
   InsuranceRoute: InsuranceRoute,
   LoansRoute: LoansRoute,
@@ -363,3 +384,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
