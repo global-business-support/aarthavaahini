@@ -250,7 +250,6 @@ function NewLeadForm({ onSaved }: { onSaved: () => void }) {
       city: f.city || null,
       state: f.state || null,
       product_type: f.product_type,
-      product_type: f.product_type,
       lead_source: f.lead_source,
       status: "New",
     });
