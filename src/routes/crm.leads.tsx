@@ -194,7 +194,7 @@ function LeadsPage() {
                   </TableCell>
                   <TableCell>
                     <Badge variant="secondary" className="capitalize">
-                      {(l.product_type ?? l.product_type ?? "").replace(/_/g, " ")}
+                      {(l.product_type ?? "").replace(/_/g, " ")}
                     </Badge>
                   </TableCell>
                   <TableCell className="text-sm text-slate-600">{l.lead_source ?? "—"}</TableCell>
