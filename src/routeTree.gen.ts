@@ -23,6 +23,7 @@ import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CrmIndexRouteImport } from './routes/crm.index'
+import { Route as CrmMutualFundsRouteImport } from './routes/crm.mutual-funds'
 import { Route as CrmLoginRouteImport } from './routes/crm.login'
 import { Route as CrmLoansRouteImport } from './routes/crm.loans'
 import { Route as CrmLeadsRouteImport } from './routes/crm.leads'
@@ -102,6 +103,11 @@ const CrmIndexRoute = CrmIndexRouteImport.update({
   path: '/',
   getParentRoute: () => CrmRoute,
 } as any)
+const CrmMutualFundsRoute = CrmMutualFundsRouteImport.update({
+  id: '/mutual-funds',
+  path: '/mutual-funds',
+  getParentRoute: () => CrmRoute,
+} as any)
 const CrmLoginRoute = CrmLoginRouteImport.update({
   id: '/login',
   path: '/login',
@@ -165,6 +171,7 @@ export interface FileRoutesByFullPath {
   '/crm/leads': typeof CrmLeadsRoute
   '/crm/loans': typeof CrmLoansRoute
   '/crm/login': typeof CrmLoginRoute
+  '/crm/mutual-funds': typeof CrmMutualFundsRoute
   '/crm/': typeof CrmIndexRoute
 }
 export interface FileRoutesByTo {
@@ -188,6 +195,7 @@ export interface FileRoutesByTo {
   '/crm/leads': typeof CrmLeadsRoute
   '/crm/loans': typeof CrmLoansRoute
   '/crm/login': typeof CrmLoginRoute
+  '/crm/mutual-funds': typeof CrmMutualFundsRoute
   '/crm': typeof CrmIndexRoute
 }
 export interface FileRoutesById {
@@ -213,6 +221,7 @@ export interface FileRoutesById {
   '/crm/leads': typeof CrmLeadsRoute
   '/crm/loans': typeof CrmLoansRoute
   '/crm/login': typeof CrmLoginRoute
+  '/crm/mutual-funds': typeof CrmMutualFundsRoute
   '/crm/': typeof CrmIndexRoute
 }
 export interface FileRouteTypes {
@@ -239,6 +248,7 @@ export interface FileRouteTypes {
     | '/crm/leads'
     | '/crm/loans'
     | '/crm/login'
+    | '/crm/mutual-funds'
     | '/crm/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -262,6 +272,7 @@ export interface FileRouteTypes {
     | '/crm/leads'
     | '/crm/loans'
     | '/crm/login'
+    | '/crm/mutual-funds'
     | '/crm'
   id:
     | '__root__'
@@ -286,6 +297,7 @@ export interface FileRouteTypes {
     | '/crm/leads'
     | '/crm/loans'
     | '/crm/login'
+    | '/crm/mutual-funds'
     | '/crm/'
   fileRoutesById: FileRoutesById
 }
@@ -405,6 +417,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CrmIndexRouteImport
       parentRoute: typeof CrmRoute
     }
+    '/crm/mutual-funds': {
+      id: '/crm/mutual-funds'
+      path: '/mutual-funds'
+      fullPath: '/crm/mutual-funds'
+      preLoaderRoute: typeof CrmMutualFundsRouteImport
+      parentRoute: typeof CrmRoute
+    }
     '/crm/login': {
       id: '/crm/login'
       path: '/login'
@@ -484,6 +503,7 @@ interface CrmRouteChildren {
   CrmLeadsRoute: typeof CrmLeadsRoute
   CrmLoansRoute: typeof CrmLoansRoute
   CrmLoginRoute: typeof CrmLoginRoute
+  CrmMutualFundsRoute: typeof CrmMutualFundsRoute
   CrmIndexRoute: typeof CrmIndexRoute
 }
 
@@ -493,6 +513,7 @@ const CrmRouteChildren: CrmRouteChildren = {
   CrmLeadsRoute: CrmLeadsRoute,
   CrmLoansRoute: CrmLoansRoute,
   CrmLoginRoute: CrmLoginRoute,
+  CrmMutualFundsRoute: CrmMutualFundsRoute,
   CrmIndexRoute: CrmIndexRoute,
 }
 
