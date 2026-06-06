@@ -71,6 +71,7 @@ function LeadsPage() {
   const [filter, setFilter] = useState("");
   const [stageFilter, setStageFilter] = useState<string>("all");
   const [open, setOpen] = useState(false);
+  const [convertLead, setConvertLead] = useState<Lead | null>(null);
 
   const load = async () => {
     setLoading(true);
