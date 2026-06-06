@@ -2,12 +2,44 @@ import { useEffect, useState } from "react";
 
 type Slide = { title: string; subtitle: string; image: string };
 
-export function ProductHeroSlider({ slides }: { slides: Slide[] }) {
+export function ProductHeroSlider({
+  slides,
+  variant = "hero",
+}: {
+  slides: Slide[];
+  variant?: "hero" | "watermark";
+}) {
   const [i, setI] = useState(0);
   useEffect(() => {
-    const id = setInterval(() => setI((x) => (x + 1) % slides.length), 4500);
+    const id = setInterval(() => setI((x) => (x + 1) % slides.length), 5500);
     return () => clearInterval(id);
   }, [slides.length]);
+
+  if (variant === "watermark") {
+    return (
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
+      >
+        {slides.map((s, idx) => (
+          <div
+            key={idx}
+            className={`absolute inset-0 transition-opacity duration-[1500ms] ${
+              i === idx ? "opacity-100" : "opacity-0"
+            }`}
+          >
+            <img
+              src={s.image}
+              alt=""
+              className="h-full w-full object-cover opacity-20"
+            />
+          </div>
+        ))}
+        {/* Soft wash so text stays legible */}
+        <div className="absolute inset-0 bg-gradient-to-b from-white/85 via-white/70 to-white/90" />
+      </div>
+    );
+  }
 
   return (
     <section className="relative h-[340px] w-full overflow-hidden md:h-[420px]">
