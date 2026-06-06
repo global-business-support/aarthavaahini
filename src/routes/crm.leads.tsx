@@ -231,6 +231,23 @@ function LeadsPage() {
           </Table>
         )}
       </Card>
+
+      <Dialog open={!!convertLead} onOpenChange={(v) => !v && setConvertLead(null)}>
+        <DialogContent className="max-w-2xl">
+          <DialogHeader>
+            <DialogTitle>Convert Lead → Customer</DialogTitle>
+          </DialogHeader>
+          {convertLead && (
+            <ConvertLeadForm
+              lead={convertLead}
+              onDone={() => {
+                setConvertLead(null);
+                load();
+              }}
+            />
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
