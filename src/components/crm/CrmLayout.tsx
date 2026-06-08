@@ -19,6 +19,7 @@ import {
   Menu,
   X,
 } from "lucide-react";
+import logoUrl from "@/assets/logo.png";
 import { useCrmAuth } from "@/hooks/useCrmAuth";
 import { supabase } from "@/integrations/supabase/client";
 import { cn } from "@/lib/utils";
@@ -107,7 +108,7 @@ export function CrmLayout() {
         <div className="flex items-center justify-between border-b border-white/10 px-5 py-4">
           <Link to="/crm" className="flex items-center gap-2.5">
             <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-lg bg-white shadow-lg shadow-blue-500/30">
-              <img src="/src/assets/logo.png" alt="Aarthvaahini" className="h-9 w-9 object-contain" />
+              <img src={logoUrl} alt="Aarthvaahini" className="h-9 w-9 object-contain" />
             </div>
             <div>
               <div className="text-sm font-semibold tracking-tight text-white">Aarthvaahini</div>
