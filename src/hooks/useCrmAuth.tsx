@@ -29,11 +29,17 @@ export function useCrmAuth() {
         }
         return;
       }
-      const { data } = await supabase
+      const { data, error } = await supabase
         .from("user_roles")
         .select("role")
         .eq("user_id", u.id);
       if (!mounted) return;
+      if (error) {
+        console.error("CRM role check failed", error);
+        setRoles([]);
+        setLoading(false);
+        return;
+      }
       setRoles(
         (data ?? [])
           .map((r) => r.role as StaffRole)

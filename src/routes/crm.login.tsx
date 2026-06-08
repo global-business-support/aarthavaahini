@@ -1,9 +1,9 @@
-import { createFileRoute, useNavigate, useSearch, Link } from "@tanstack/react-router";
+import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { Loader2, ShieldAlert, Sparkles, Lock, Mail, ArrowLeft, ShieldCheck, TrendingUp, Users } from "lucide-react";
+import { Loader2, Sparkles, Lock, Mail, ArrowLeft, ShieldCheck, TrendingUp, Users } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 
@@ -16,7 +16,6 @@ export const Route = createFileRoute("/crm/login")({
 
 function CrmLoginPage() {
   const nav = useNavigate();
-  const search = useSearch({ from: "/crm/login" });
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -25,10 +24,11 @@ function CrmLoginPage() {
     const check = async () => {
       const { data: { session } } = await supabase.auth.getSession();
       if (!session?.user) return;
-      const { data: roles } = await supabase
+      const { data: roles, error } = await supabase
         .from("user_roles")
         .select("role")
         .eq("user_id", session.user.id);
+      if (error) return;
       const staff = (roles ?? []).some((r) =>
         ["admin", "manager", "sales_executive", "operations", "insurance_executive", "mf_executive"].includes(
           r.role as string,
@@ -50,10 +50,14 @@ function CrmLoginPage() {
     // Verify staff role before redirect
     const userId = data.user?.id;
     if (userId) {
-      const { data: roles } = await supabase
+      const { data: roles, error: roleError } = await supabase
         .from("user_roles")
         .select("role")
         .eq("user_id", userId);
+      if (roleError) {
+        setLoading(false);
+        return toast.error("CRM access check failed. Please try again.");
+      }
       const staff = (roles ?? []).some((r) =>
         ["admin", "manager", "sales_executive", "operations", "insurance_executive", "mf_executive"].includes(
           r.role as string,
@@ -62,7 +66,7 @@ function CrmLoginPage() {
       setLoading(false);
       if (!staff) {
         await supabase.auth.signOut();
-        return nav({ to: "/crm/login", search: { unauthorized: "1" } as never });
+        return toast.error("CRM access is not enabled for this account.");
       }
     } else {
       setLoading(false);
@@ -135,13 +139,6 @@ function CrmLoginPage() {
               <h2 className="text-2xl font-bold text-white">Welcome back</h2>
               <p className="mt-1 text-sm text-blue-100/60">Sign in to your CRM workspace</p>
             </div>
-
-            {search.unauthorized && (
-              <div className="mb-4 flex items-start gap-2 rounded-lg border border-amber-400/30 bg-amber-400/10 px-3 py-2.5 text-sm text-amber-200">
-                <ShieldAlert className="mt-0.5 h-4 w-4 shrink-0" />
-                <span>Your account doesn't have CRM access. Contact your administrator.</span>
-              </div>
-            )}
 
             <form onSubmit={signIn} className="space-y-4">
               <div>
