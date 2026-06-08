@@ -116,7 +116,7 @@ export function CrmLayout() {
             </div>
           </Link>
           <button
-            className="rounded-md p-1 text-slate-300 hover:bg-white/10 md:hidden"
+            className="rounded-md p-1 text-white/70 hover:bg-white/10 md:hidden"
             onClick={() => setMobileOpen(false)}
           >
             <X className="h-4 w-4" />
