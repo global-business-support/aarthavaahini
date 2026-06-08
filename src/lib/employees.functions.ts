@@ -31,12 +31,12 @@ function generatePassword(len = 12) {
 export const listEmployees = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {
-    await assertAdmin(context.userId);
+    await getAdminUserId(context.token);
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
     const { data: roles } = await supabaseAdmin
       .from("user_roles")
       .select("user_id, role")
-      .in("role", STAFF_ROLES as unknown as string[]);
+      .in("role", [...STAFF_ROLES]);
     const ids = Array.from(new Set((roles ?? []).map((r) => r.user_id)));
     if (ids.length === 0) return { employees: [] };
     const { data: profiles } = await supabaseAdmin
@@ -70,7 +70,7 @@ export const createEmployee = createServerFn({ method: "POST" })
     }).parse(input),
   )
   .handler(async ({ context, data }) => {
-    await assertAdmin(context.userId);
+    await getAdminUserId(context.token);
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
     const password = generatePassword(12);
 
@@ -84,7 +84,6 @@ export const createEmployee = createServerFn({ method: "POST" })
 
     const uid = created.user.id;
 
-    // Profile may have been auto-created by trigger; upsert to be safe
     await supabaseAdmin.from("profiles").upsert({
       id: uid,
       email: data.email,
@@ -92,11 +91,10 @@ export const createEmployee = createServerFn({ method: "POST" })
       phone: data.phone,
     });
 
-    // Remove default 'user' role and add the staff role
     await supabaseAdmin.from("user_roles").delete().eq("user_id", uid);
     const { error: rErr } = await supabaseAdmin
       .from("user_roles")
-      .insert({ user_id: uid, role: data.role });
+      .insert({ user_id: uid, role: data.role as StaffRole });
     if (rErr) throw new Error(rErr.message);
 
     return {
@@ -109,8 +107,8 @@ export const deleteEmployee = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .inputValidator((input) => z.object({ user_id: z.string().uuid() }).parse(input))
   .handler(async ({ context, data }) => {
-    await assertAdmin(context.userId);
-    if (data.user_id === context.userId) throw new Error("Cannot delete yourself");
+    const adminId = await getAdminUserId(context.token);
+    if (data.user_id === adminId) throw new Error("Cannot delete yourself");
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
     const { error } = await supabaseAdmin.auth.admin.deleteUser(data.user_id);
     if (error) throw new Error(error.message);
@@ -121,7 +119,7 @@ export const resetEmployeePassword = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .inputValidator((input) => z.object({ user_id: z.string().uuid() }).parse(input))
   .handler(async ({ context, data }) => {
-    await assertAdmin(context.userId);
+    await getAdminUserId(context.token);
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
     const password = generatePassword(12);
     const { error } = await supabaseAdmin.auth.admin.updateUserById(data.user_id, { password });
