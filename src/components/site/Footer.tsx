@@ -18,7 +18,9 @@ import {
   Phone,
   Mail,
   MapPin,
+  LogIn,
 } from "lucide-react";
+
 
 export function Footer() {
 
@@ -380,14 +382,21 @@ export function Footer() {
 
       {/* COPYRIGHT */}
 
-      <div className="border-t border-border/60 py-5 text-center text-xs text-muted-foreground">
-
-        © {new Date().getFullYear()}
-        {" "}
-        Aarthvaahini Financial Services Pvt. Ltd.
-        All rights reserved.
-
+      <div className="border-t border-border/60 py-5">
+        <div className="container mx-auto flex flex-col items-center justify-between gap-3 px-6 text-xs text-muted-foreground sm:flex-row">
+          <p>
+            © {new Date().getFullYear()} Aarthvaahini Financial Services Pvt. Ltd. All rights reserved.
+          </p>
+          <Link
+            to="/crm/login"
+            className="inline-flex items-center gap-1.5 rounded-full border border-primary/30 bg-primary/5 px-4 py-1.5 text-[12px] font-semibold text-primary transition hover:bg-primary hover:text-primary-foreground"
+          >
+            <LogIn className="h-3.5 w-3.5" />
+            CRM Login
+          </Link>
+        </div>
       </div>
+
 
     </footer>
 

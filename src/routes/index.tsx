@@ -4,6 +4,7 @@ import { Hero } from "@/components/site/Hero";
 import { Products } from "@/components/site/Products";
 import { EmiCalculator } from "@/components/site/EmiCalculator";
 import { CibilChecker } from "@/components/site/CibilChecker";
+import { Testimonials } from "@/components/site/Testimonials";
 import { AdminPanel } from "@/components/site/AdminPanel";
 import { Footer } from "@/components/site/Footer";
 import { SipPlanner } from "@/components/site/SipPlanner";
@@ -19,6 +20,7 @@ function Index() {
         <EmiCalculator />
         <SipPlanner />
         <CibilChecker />
+        <Testimonials />
         <AdminPanel />
       </main>
       <Footer />
