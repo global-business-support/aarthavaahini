@@ -3,16 +3,20 @@ import { z } from "zod";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 
 const STAFF_ROLES = ["admin", "manager", "sales_executive", "operations", "insurance_executive", "mf_executive"] as const;
+type StaffRole = typeof STAFF_ROLES[number];
 
-async function assertAdmin(userId: string) {
+async function getAdminUserId(token: string): Promise<string> {
   const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
-  const { data, error } = await supabaseAdmin
+  const { data, error } = await supabaseAdmin.auth.getUser(token);
+  if (error || !data.user) throw new Error("Unauthorized");
+  const { data: role } = await supabaseAdmin
     .from("user_roles")
     .select("role")
-    .eq("user_id", userId)
+    .eq("user_id", data.user.id)
     .eq("role", "admin")
     .maybeSingle();
-  if (error || !data) throw new Error("Forbidden: admin only");
+  if (!role) throw new Error("Forbidden: admin only");
+  return data.user.id;
 }
 
 function generatePassword(len = 12) {
