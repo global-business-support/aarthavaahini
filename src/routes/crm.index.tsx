@@ -137,14 +137,14 @@ function DashboardPage() {
           return (
             <Card
               key={c.label}
-              className="group relative overflow-hidden border-slate-200/70 p-5 transition-all hover:-translate-y-0.5 hover:shadow-lg"
+              className="group relative overflow-hidden border-white/60 bg-white/80 p-5 shadow-sm backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:shadow-lg"
             >
-              <div className={cn("absolute -right-8 -top-8 h-24 w-24 rounded-full opacity-50 blur-2xl", toneBlur(c.tone))} />
+              <div className={cn("absolute -right-6 -top-6 h-20 w-20 rounded-full opacity-40 blur-2xl", toneBlur(c.tone))} />
               <div className="relative flex items-start justify-between">
                 <div className={cn("rounded-xl p-2.5 shadow-sm", toneBg(c.tone))}>
                   <Icon className={cn("h-5 w-5", toneFg(c.tone))} />
                 </div>
-                <Badge variant="secondary" className="text-[10px] font-medium">
+                <Badge variant="secondary" className="text-[10px] font-medium bg-white/60">
                   {c.trend}
                 </Badge>
               </div>
